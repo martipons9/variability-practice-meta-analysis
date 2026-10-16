@@ -18,8 +18,8 @@ Each row represents a specific extracted dataset for a study or experiment, spor
 | `skill_type` | Classification of the target skill according to its temporal structure. | `discrete` or `continuous` |
 | `learning_outcome` | Performance outcome measured, such as accuracy, speed, or ball control. | Text |
 | `evaluation_time` | Stage at which the outcome was assessed. | `acquisition`, `retention`, or `transfer` |
-| `comparison` | Practice-regime comparison represented by the record. The first group is the control condition and the second is the experimental condition. | For example, `Cons_vs_LCI`, `LCI_vs_HCI` |
-| `higher_better` | Indicates whether a higher numerical value represents better performance for the outcome. | `TRUE` or `FALSE` |
+| `comparison` | Practice-regime comparison represented by the record. The first group is the control condition and the second is the experimental condition. | For example, `cons_vs_lci`, `lci_vs_hci` |
+| `higher_better` | Indicates whether a higher numerical value represents better performance for the outcome. | `true` or `false` |
 | `n.c` | Sample size in the control group (the first condition in `comparison`). | Positive integer |
 | `n.e` | Sample size in the experimental group (the second condition in `comparison`). | Positive integer |
 | `mean.c` | Mean outcome value for the control group. | Numeric |
@@ -40,9 +40,9 @@ The `comparison` variable identifies the two practice conditions being compared.
 
 Examples include:
 
-- `Cons_vs_LCI`: constant practice versus low contextual interference.
-- `Cons_vs_HCI`: constant practice versus high contextual interference.
-- `LCI_vs_HCI`: low versus high contextual interference.
+- `cons_vs_lci`: constant practice versus low contextual interference.
+- `cons_vs_hci`: constant practice versus high contextual interference.
+- `lci_vs_hci`: low versus high contextual interference.
 
 The abbreviations should be interpreted consistently with the operational definitions adopted in the systematic review.
 
@@ -50,8 +50,8 @@ The abbreviations should be interpreted consistently with the operational defini
 
 The `higher_better` variable indicates the direction of the outcome:
 
-- `TRUE`: higher values indicate better performance.
-- `FALSE`: lower values indicate better performance, as may occur with movement time or error measures.
+- `true`: higher values indicate better performance.
+- `false`: lower values indicate better performance, as may occur with movement time or error measures.
 
 This variable is used to ensure that effect directions are harmonised when calculating standardised mean differences.
 
