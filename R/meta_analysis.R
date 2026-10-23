@@ -92,7 +92,6 @@ meta_database$mean.e[reverse] <- -meta_database$mean.e[reverse]
 accuracy_outcomes <- c(
   "accuracy",
   "accuracy (error)",
-  "accuracy mt"
 )
 
 speed_outcomes <- c(
@@ -289,6 +288,12 @@ meta_results <- list()
 ### Run all eligible meta-analyses
 #############################################################
 
+pdf(
+  "Forest_plots_all_meta_analyses.pdf",
+  width = 12,
+  height = 8
+)
+
 for(outcome_name in names(outcome_sets)){
   
   for(comp in comparisons){
@@ -339,6 +344,8 @@ for(outcome_name in names(outcome_sets)){
   }
   
 }
+
+dev.
 
 #############################################################
 ### Summary of successful meta-analyses
@@ -449,7 +456,7 @@ get_favors_labels <- function(name) {
 
 
 pdf(
-  "Sensitivity_analysis_forest_plots_v1.pdf",
+  "Sensitivity_analysis_forest_plots.pdf",
   width = 12,
   height = 8
 )
@@ -492,11 +499,11 @@ for(meta_name in names(meta_results)){
   
   meta_object <- meta_results[[meta_name]]
   
-  # Nombre d'estudis independents i effect sizes
+  # Number of independent studies and effect sizes
   k_study <- meta_object$k.study
   k_effect <- meta_object$k
   
-  # Publication bias només si hi ha >= 10 effect sizes
+  # Assess publication bias only when there are at least 10 effect sizes
   if(k_effect >= 10){
     
     cat("\n=========================================\n")
@@ -552,9 +559,9 @@ publication_bias_results
 ##################################################
 
 funnel_names <- c(
-  "Accuracy_LCI_vs_HCI_Acquisition" = "LCI vs HCI — Acquisition",
-  "Accuracy_LCI_vs_HCI_Retention"   = "LCI vs HCI — Retention",
-  "Accuracy_LCI_vs_HCI_Transfer"    = "LCI vs HCI — Transfer"
+  "Accuracy_lci_vs_hci_acquisition" = "LCI vs HCI — Acquisition",
+  "Accuracy_lci_vs_hci_retention"   = "LCI vs HCI — Retention",
+  "Accuracy_lci_vs_hci_transfer"    = "LCI vs HCI — Transfer"
 )
 
 pdf(
@@ -575,16 +582,3 @@ for(name in names(funnel_names)){
 }
 
 dev.off()
-
-#############################################################
-### Trim-and-fill
-#############################################################
-
-tf <- trimfill(meta_results[["Accuracy_LCI_vs_HCI_Acquisition"]])
-
-summary(tf)
-
-funnel(tf)
-
-cat("Original SMD:", round(meta_results[["Accuracy_LCI_vs_HCI_Acquisition"]]$TE.random,3), "\n")
-cat("Trim-fill SMD:", round(tf$TE.random,3), "\n")
